@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Souvenir edit</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-$END$
+  <div id="block-edit">
+    <h1>Souvenir edit</h1>
+      <img src="#" th:if="${souvenir.image}" th:src="@{'/images/' + ${image.id}}" th:alt="${souvenir.souvenirName}" width="100" height="100"/>
+      <img th:unless="${souvenir.image}" src="/noimage.jpg" width="100" height="100"/>
+    <form action="#" th:action="@{/souvenir_update/{id}(id=${souvenir.id})}" th:object="${souvenir}" method="post" enctype="multipart/form-data">
+        <label for="souvenirName">Souvenir name</label>
+        <input type="text" th:field="*{souvenirName}" id="souvenirName"></br>
+        <label for="souvenirPrice">Souvenir Price:</label>
+        <input type="text" th:field="*{souvenirPrice}" id="souvenirPrice"></br>
+        <label for="quantity">Souv. Quantity:</label>
+        <input type="text" th:field="*{quantity}" id="quantity"></br>
+        <label for="souvenirDate">Souvenir Date</label>
+        <input type="date" th:field="*{dateOfManufacturing}" id="souvenirDate"></br>
+        <label for="manufacturer">Manufacturer :</label>
+        <select th:field="*{manufacturer}" name="manufacturer" id="manufacturer">
+            <option th:each="m : ${manufacturers}"
+                    th:value="${m.id}"
+                    th:text="${m.name}">
+            </option>
+        </select>
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image">
+        </br>
+        </br>
+        <input type="submit" value="Update souvenir">
+    </form>
+  </div>
 </body>
 </html>

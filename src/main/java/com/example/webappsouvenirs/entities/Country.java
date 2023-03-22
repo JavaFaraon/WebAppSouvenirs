@@ -1,7 +1,7 @@
-package com.example.webappsouvenirs;
+package com.example.webappsouvenirs.entities;
 
-import com.example.webappsouvenirs.entities.Manufacturer;
 import jakarta.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "countries")
@@ -14,8 +14,6 @@ public class Country {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "country", optional = false)
-    private Manufacturer manufacturer;
     public String getName() {
         return name;
     }
@@ -32,13 +30,14 @@ public class Country {
         this.id = id;
     }
 
+    @OneToMany(mappedBy = "country")
+    private Collection<Manufacturer> manufacturers;
 
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
+    public Collection<Manufacturer> getManufacturers() {
+        return manufacturers;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setManufacturers(Collection<Manufacturer> manufacturers) {
+        this.manufacturers = manufacturers;
     }
 }

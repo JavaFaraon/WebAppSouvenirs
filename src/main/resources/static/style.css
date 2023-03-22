@@ -1,10 +1,63 @@
-div {
+#block-add {
     border:2px solid black;
     padding:6px;
+    text-align: center;
+    /*float: left;
+    display: block;
+
     width: 320px;
+    height: 240px;
+    margin-left: auto;
+    margin-right: 5px;
+    */
+}
+#block-edit {
+    border:2px solid black;
+    padding:6px;
+    width: 340px;
+    height: 360px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+#block-period {
+    border:2px solid black;
+    padding:6px;
+    text-align: center;
+    margin-bottom: 21px;
+    /*float: left;
+    display: block;
+
+    width: 320px;
+    height: 240px;
+    margin-left: auto;
+    margin-right: 5px;
+
+
+     */
+}
+#block-country {
+    border:2px solid black;
+    padding:6px;
+    text-align: center;
+    /*float: left;
+    display: block;
+
+    width: 320px;
+    height: 240px;
+    margin-left: auto;
+    margin-right: 5px;
+    text-align: center;*/
+}
+#menu {
+    display: flex;
+    width: 320px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.button-reference {
+    height: 22px;
 }
 h4 {
     text-align: center;
@@ -46,7 +99,7 @@ table thead th {
     border-right: 1px solid #ddd;
     position: -webkit-sticky;
     position: sticky;
-    top: 20px;
+    top: 0px;
 }
 table tbody td {
     text-align: left;
@@ -65,4 +118,5 @@ table thead tr th:last-child, .table tbody tr td:last-child {
 table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
+body { background: url(5570875.jpg); }
 

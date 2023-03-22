@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Manufacturer edit</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-$END$
+<div id="block-edit">
+  <h1>Manufacturer edit</h1>
+  <form action="#" th:action="@{/manufacturer_update/{id}(id=${manufacturer.id})}" th:object="${manufacturer}" method="post">
+    <label for="souvenirName">Manufacturer name</label>
+    <input type="text" th:field="*{name}" id="souvenirName"></br>
+    <label for="manufacturer">Country :</label>
+    <select th:field="*{country}" name="manufacturer" id="manufacturer">
+      <option th:each="c : ${countries}"
+              th:value="${c.id}"
+              th:text="${c.name}">
+      </option>
+    </select>
+    </br>
+    </br>
+    <input type="submit" value="Update manufacturer">
+  </form>
+</div>
 </body>
 </html>

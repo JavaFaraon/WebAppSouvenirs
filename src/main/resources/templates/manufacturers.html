@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Manufacturers</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-$END$
+<h1 class="text-center">List of manufacturers</h1>
+<p><a href="souvenirs">Show souvenirs list</a></p>
+<div id="block-add">
+    <h4>Add manufacturer</h4>
+    <form action="add_manufacturer" method="post">
+        <label for="name">Manufacturer name</label>
+        <input type="text" name="name" id="name"></br>
+        <label for="country">Country :</label>
+        <select name="country" id="country">
+            <option value="">Select country</option>
+            <option th:each="c : ${countries}"
+                    th:value="${c.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+        </br>
+        </br>
+        <input type="submit" value="Add manufacturer">
+    </form>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Show souvenirs</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${manufacturers}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.name}"></td>
+        <td th:text="${m.country.name}"></td>
+        <td><a th:href="@{/show_souvenirs/{id}(id=${m.id})}">show souvenirs</a></td>
+        <td><a th:href="@{/manufacturer_edit/{id}(id=${m.id})}">edit</a></td>
+        <td><a th:href="@{/manufacturer_delete/{id}(id=${m.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

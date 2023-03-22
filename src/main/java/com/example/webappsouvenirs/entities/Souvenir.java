@@ -1,12 +1,11 @@
 package com.example.webappsouvenirs.entities;
-
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "souvenirs")
-public class Souvenirs {
+@Table(name = "souvenir")
+public class Souvenir {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,14 +17,48 @@ public class Souvenirs {
     @Column(name = "souvenir_price")
     private Double souvenirPrice;
 
+    @Column(name = "quantity")
+    private Integer quantity;
     @Column(name = "date_of_manufacturing")
-    private LocalDateTime dateOfManufacturing;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfManufacturing;
 
-    public LocalDateTime getDateOfManufacturing() {
+    @ManyToOne(optional = false)
+    private Manufacturer manufacturer;
+
+   @OneToOne
+   @JoinColumn(name = "image_id")
+   private Image image;
+
+    public Souvenir() {
+
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Souvenir(Image image) {
+        this.image = image;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public LocalDate getDateOfManufacturing() {
         return dateOfManufacturing;
     }
 
-    public void setDateOfManufacturing(LocalDateTime dateOfManufacturing) {
+    public void setDateOfManufacturing(LocalDate dateOfManufacturing) {
         this.dateOfManufacturing = dateOfManufacturing;
     }
 
@@ -53,4 +86,11 @@ public class Souvenirs {
         this.id = id;
     }
 
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 }

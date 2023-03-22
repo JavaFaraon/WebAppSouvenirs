@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Delete manufacturer</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-$END$
+<h1 class="text-center" th:text="'Delete manufacturer ' + ${manufacturer.name}"></h1>
+<h2>This manufacturer has the following list of souvenirs. Removing a manufacturer will remove all souvenirs. Do you agree?</h2>
+    <div id="menu">
+        <form th:action="'/agree_delete_manufacturer/' + ${manufacturer.id}" method="post">
+            <button type="submit">Yes, I'm agree</button>
+        </form>
+        <button class="button-reference" type="button"><a href="/manufacturers">No, I'm not agree</a></button>
+
+    </div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Souvenir name</th>
+        <th>Price</th>
+        <th>Date of manufacturing</th>
+        <th>Country</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${souvenirsByManufacturer}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.souvenirName}"></td>
+        <td th:text="${s.souvenirPrice}"></td>
+        <td th:text="${s.dateOfManufacturing}"></td>
+        <td th:text="${s.manufacturer.country.name}"></td>
+        <td><a th:href="@{/souvenir_edit/{id}(id=${s.id})}">edit</a></td>
+        <td><a th:href="@{/souvenir_delete/{id}(id=${s.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

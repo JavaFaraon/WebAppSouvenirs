@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>All souvenirs of manufacturer</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-$END$
+  <h1 class="text-center" th:text="'All souvenirs of ' + ${manufacturer.name}"></h1>
+  <p><a href="/manufacturers">Return to manufacturers list</a></p>
+  <table>
+      <thead>
+      <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Souvenir name</th>
+          <th>Price</th>
+          <th>Date of manufacturing</th>
+          <th>Country</th>
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="s : ${souvenirsByManufacturer}">
+          <td th:text="${s.id}"></td>
+          <td><img th:if="${s.image}" th:src="@{'/images/' + ${s.image.id}}"  width="100" height="100"/></td>
+          <td th:text="${s.souvenirName}"></td>
+          <td th:text="${s.souvenirPrice}"></td>
+          <td th:text="${s.dateOfManufacturing}"></td>
+          <td th:text="${s.manufacturer.country.name}"></td>
+          <td><a th:href="@{/souvenir_edit/{id}(id=${s.id})}">edit</a></td>
+          <td><a th:href="@{/souvenir_delete/{id}(id=${s.id})}">delete</a></td>
+      </tr>
+      </tbody>
+  </table>
 </body>
 </html>
