@@ -32,7 +32,7 @@
                 th:value="${m.id}"
                 th:text="${m.name}">
         </option>
-    </select>
+    </select></br>
       <label for="image">Image:</label>
       <input type="file" name="image" id="image">
       </br>
@@ -41,7 +41,7 @@
   </form>
 </div>
     </div>
-    <div class-"col-md-6">
+    <div class="col-md-6">
 <div id="block-period">
     <p>Choose souvenirs by period of manufacturing</p>
     <form action="show_souvenirs_by_period" method="post">
@@ -80,6 +80,7 @@
             <th>Souvenir name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Total Sum</th>
             <th>Date of manufacturing</th>
             <th>Manufacturer</th>
             <th>Country</th>
@@ -92,8 +93,9 @@
             <td th:text="${s.id}"></td>
             <td><img th:if="${s.image}" th:src="@{'/images/' + ${s.image.id}}"  width="100" height="100"/></td>
             <td th:text="${s.souvenirName}"></td>
-            <td th:text="${s.souvenirPrice}"></td>
+            <td th:text="${#numbers.formatDecimal(s.souvenirPrice,1,'DEFAULT',2,'COMMA')}"></td>
             <td th:text="${s.quantity}"></td>
+            <td th:text="${#numbers.formatDecimal(s.souvenirPrice*s.quantity,1,'DEFAULT',2,'COMMA')}"></td>
             <td th:text="${s.dateOfManufacturing}"></td>
             <td th:text="${s.manufacturer.name}"></td>
             <td th:text="${s.manufacturer.country.name}"></td>
@@ -102,5 +104,14 @@
         </tr>
       </tbody>
   </table>
+<script>
+    var p = document.getElementById("souvenirPrice").innerText;
+    p = parseFloat(p);
+    var q = document.getElementById("quantity").innerText;
+    q = parseFloat(q);
+    var s = p*q;
+    s = s.toFixed(2);
+    document.getElementById("sum").innerHTML = s;
+</script>
 </body>
 </html>

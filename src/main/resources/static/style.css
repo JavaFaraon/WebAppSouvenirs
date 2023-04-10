@@ -2,6 +2,8 @@
     border:2px solid black;
     padding:6px;
     text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
     /*float: left;
     display: block;
 
@@ -24,7 +26,9 @@
     border:2px solid black;
     padding:6px;
     text-align: center;
-    margin-bottom: 21px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 26px;
     /*float: left;
     display: block;
 
@@ -40,6 +44,8 @@
     border:2px solid black;
     padding:6px;
     text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
     /*float: left;
     display: block;
 
