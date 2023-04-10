@@ -15,6 +15,8 @@
           <th>Image</th>
           <th>Souvenir name</th>
           <th>Price</th>
+          <th>Quantity</th>
+          <th>Total Sum</th>
           <th>Date of manufacturing</th>
           <th>Country</th>
           <th>Edit</th>
@@ -26,7 +28,9 @@
           <td th:text="${s.id}"></td>
           <td><img th:if="${s.image}" th:src="@{'/images/' + ${s.image.id}}"  width="100" height="100"/></td>
           <td th:text="${s.souvenirName}"></td>
-          <td th:text="${s.souvenirPrice}"></td>
+          <td th:text="${#numbers.formatDecimal(s.souvenirPrice,1,'DEFAULT',2,'COMMA')}"></td>
+          <td th:text="${s.quantity}"></td>
+          <td th:text="${#numbers.formatDecimal(s.souvenirPrice*s.quantity,1,'DEFAULT',2,'COMMA')}"></td>
           <td th:text="${s.dateOfManufacturing}"></td>
           <td th:text="${s.manufacturer.country.name}"></td>
           <td><a th:href="@{/souvenir_edit/{id}(id=${s.id})}">edit</a></td>
